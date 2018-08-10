@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(readlink -f ${0%/*})
+cd $SCRIPT_DIR/../share/flradio
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PWD"
+./flradio.bin

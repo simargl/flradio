@@ -1,0 +1,54 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304 
+header_name {.h} 
+code_name {.cxx}
+Function {} {open selected
+} {
+  Fl_Window main_window {
+    label FLRadio open
+    xywh {372 361 830 545} type Double color 24 align 32 size_range {500 300 0 0} visible
+  } {
+    Fl_Group {} {open
+      xywh {5 5 820 45} color 24
+    } {
+      Fl_Button button_pause {
+        label pause
+        xywh {635 5 60 20} box FLAT_BOX selection_color 43 labelfont 4 labelsize 12 labelcolor 32
+      }
+      Fl_Button button_play {
+        label play
+        xywh {700 5 60 20} box FLAT_BOX selection_color 43 labelfont 4 labelsize 12 labelcolor 32
+      }
+      Fl_Value_Slider progress {
+        xywh {5 5 540 20} type Horizontal box FLAT_BOX color 45 selection_color 61 labelsize 12 labelcolor 32 minimum -1 maximum 300 step 1 value -1 textsize 12 textcolor 32
+        code0 {progress->type(FL_HOR_FILL_SLIDER);}
+      }
+      Fl_Slider volume {
+        xywh {550 5 80 20} type Horizontal box FLAT_BOX color 45 selection_color 61 labelsize 12 labelcolor 32 maximum 100 step 1 value 100
+        code0 {volume->type(FL_HOR_FILL_SLIDER);}
+      }
+      Fl_Button button_about {
+        label about
+        xywh {765 5 60 20} box FLAT_BOX selection_color 43 labelfont 4 labelsize 12 labelcolor 32
+      }
+      Fl_Input radsel {
+        xywh {5 30 540 20} box FLAT_BOX color 45 selection_color 61 labelfont 4 labelcolor 32 align 32 when 1 textfont 5 textsize 12 textcolor 32
+      }
+      Fl_Choice country {
+        xywh {635 30 190 20} down_box BORDER_BOX selection_color 43 textfont 4 textsize 12
+        code0 {country->add("All");country->add("Serbia");country->add("Bosnia");country->add("Croatia");country->add("Switzerland");country->add("Slovenia");country->add("Austria");}
+        code1 {country->value(0);}
+      } {}
+      Fl_Output radioinfo {
+        xywh {550 30 80 20} box FLAT_BOX color 53 selection_color 61 textfont 4 textsize 12
+      }
+    }
+    Fl_Browser radio {
+      xywh {5 55 820 485} box FLAT_BOX color 32 selection_color 136 labelfont 4 textfont 4 textsize 15 textcolor 61
+      code0 {radio->type(FL_MULTI_BROWSER);}
+      code1 {int widths[] = { 420,420,420 };}
+      code2 {radio->column_widths(widths);}
+      code3 {radio->column_char('|');}
+    }
+  }
+} 

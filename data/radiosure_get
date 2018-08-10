@@ -1,0 +1,18 @@
+#!/bin/bash
+# 
+# Author: simargl <https://github.org/simargl>
+# License: GPL v3
+# Credits: dejan555 simplegtkradio http://b0x.me/simplegtkradio-0.1.17-src.tar.bz2
+
+#COUNTRIES="-e Serbia -e Bosnia -e Croatia -e Switzerland -e Slovenia -e Austria"
+
+COUNTRIES="-e $1"
+
+[ ! -f stations2.zip ] && wget http://www.radiosure.com/rsdbms/stations2.zip
+bsdtar -xf stations2.zip
+
+cat stations-*.rsd | tr -s "\t" '|' > tmp1
+awk -F'|' 'BEGIN{OFS="|";} {print $4,$3,$1,$6;}' tmp1 | sort | uniq > index_radio
+[ -f final ] && rm final
+grep $COUNTRIES index_radio | grep http | grep -v \" | cut -d "|" -f 3-4 | sort | while read i; do echo "r->add(\"$i\");">>final ; done
+rm stations-*.rsd tmp1 index_radio

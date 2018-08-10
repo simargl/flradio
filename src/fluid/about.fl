@@ -1,0 +1,55 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304 
+header_name {.h} 
+code_name {.cxx}
+Function {make_window()} {open
+} {
+  Fl_Window about_window {
+    label {About Dialog} user_data_type {Fl_Window*} open
+    xywh {426 211 365 265} type Double color 24 modal visible
+  } {
+    Fl_Button bclose {
+      label Close
+      callback {about_window->hide();}
+      xywh {300 240 60 20} box FLAT_BOX color 45 selection_color 43 labelfont 4 labelsize 12 labelcolor 32
+    }
+    Fl_Tabs tab {open
+      xywh {5 5 355 230} color 45
+    } {
+      Fl_Group g1 {
+        label About open selected
+        xywh {5 35 355 200} color 45 selection_color 45
+      } {
+        Fl_Box {} {
+          label {FLRadio
+1.0.5
+Cross-platform internet radio player
+Copyright © 2015
+<https://github.org/simargl>}
+          xywh {5 40 355 195}
+        }
+      }
+      Fl_Group g2 {
+        label Credits open
+        xywh {5 40 355 195} color 45 selection_color 45 hide
+      } {
+        Fl_Box {} {
+          label {BASS - Audio library (free for non-commercial use)
+http://www.un4seen.com/bass.html}
+          xywh {5 70 355 40}
+        }
+        Fl_Box {} {
+          label {FLTK - Cross-platform C++ GUI toolkit (LGPL v2)
+http://www.fltk.org/index.php}
+          xywh {5 115 355 40}
+        }
+        Fl_Box {} {
+          label {RadioSure - Used stations database
+http://www.radiosure.com/stations/}
+          xywh {5 160 355 40}
+        }
+      }
+    }
+  }
+  code {about_window->show();} {}
+} 

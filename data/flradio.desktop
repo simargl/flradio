@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=FLRadio
+Comment=Cross-platform internet radio player
+Exec=flradio
+Icon=flradio
+Terminal=false
+Categories=AudioVideo;Audio;Player;
+MimeType=
+StartupNotify=true
