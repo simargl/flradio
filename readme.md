@@ -26,3 +26,6 @@ Dependencies:
 ```
 fltk 1.3.x
 ```
+
+**Status**
+[![Build Status](https://travis-ci.org/simargl/flradio.svg?branch=master)](https://travis-ci.org/simargl/flradio)
