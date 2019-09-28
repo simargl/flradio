@@ -3,7 +3,7 @@ CFLAGS = -g -I./include
 LDFLAGS = `fltk-config --ldflags --use-images` `fltk-config --cxxflags --use-images` -lbass64 -L./lib
 PROG = build/linux/flradio.bin
 OBJS = build/linux/play.o build/linux/stations.o build/linux/gui.o
-WINFLAGS = -I/usr/local/include -DWIN32 -DUSE_OPENGL32 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -L/usr/local/lib -mwindows -lfltk_images -lpng -lz -ljpeg -lfltk -lole32 -luuid -lcomctl32 -lbass
+WINFLAGS = -I./include -DWIN32 -DUSE_OPENGL32 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -L./lib -mwindows -lfltk_images -lpng -lz -ljpeg -lfltk -lole32 -luuid -lcomctl32 -lbass
 
 all: flradio.bin
 
@@ -43,7 +43,7 @@ install: all
 	ln -sf ../../../../../local/share/flradio/flradio.png $(DESTDIR)/usr/share/icons/hicolor/64x64/apps/flradio.png 
 
 uninstall:
-	rm $(DESTDIR)/usr/bin/flradio
+	rm $(DESTDIR)/usr/local/bin/flradio
 	rm $(DESTDIR)/usr/share/applications/flradio.desktop
 	rm -r $(DESTDIR)/usr/local/share/flradio
 	rm $(DESTDIR)/usr/share/icons/hicolor/64x64/apps/flradio.png 
