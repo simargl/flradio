@@ -39,7 +39,7 @@ Fl_Double_Window* clicked_about() {
     bclose->color(FL_DARK2);
     bclose->selection_color((Fl_Color)43);
     bclose->labelfont(4);
-    bclose->labelsize(12);
+    bclose->labelsize(14);
     bclose->labelcolor(FL_GRAY0);
     bclose->callback((Fl_Callback*)cb_bclose);
     tab = new Fl_Tabs(5, 5, 355, 230);
@@ -47,7 +47,7 @@ Fl_Double_Window* clicked_about() {
     g1 = new Fl_Group(5, 35, 355, 200, "About");
     g1->color(FL_DARK2);
     g1->selection_color(FL_DARK2);
-    new Fl_Box(5, 40, 355, 195, "FLRadio\n1.0.7\nCross-platform internet radio player\nCopyright \302\251 2015\n<https://github.org/simargl>");
+    new Fl_Box(5, 40, 355, 195, "FLRadio\n1.0.7\nCross-platform internet radio player\nCopyright \302\251 2020\n<https://github.org/simargl>");
     g1->end();
     g2 = new Fl_Group(5, 40, 355, 195, "Credits");
     g2->color(FL_DARK2);
@@ -58,6 +58,10 @@ Fl_Double_Window* clicked_about() {
     new Fl_Box(5, 160, 355, 40, "RadioSure - Used stations database\nhttp://www.radiosure.com/stations/");
     g2->end();
     tab->end();
+    const char *name = "flradio.png"; 
+    Fl_PNG_Image *img = new Fl_PNG_Image(name);
+    about_window->icon(img);
+    
     about_window->set_modal();
     about_window->end();
     about_window->show();
@@ -167,13 +171,13 @@ int main(int argc, char **argv) {
     progress->box(FL_FLAT_BOX);
     progress->color(FL_DARK2);
     progress->selection_color((Fl_Color)61);
-    progress->labelsize(12);
+    progress->labelsize(14);
     progress->labelcolor(FL_GRAY0);
     progress->minimum(-1);
     progress->maximum(300);
     progress->step(1);
     progress->value(-1);
-    progress->textsize(12);
+    progress->textsize(15);
     progress->textcolor(FL_GRAY0);
     progress->callback((Fl_Callback*)progress_changed);
     progress->type(FL_HOR_FILL_SLIDER);
@@ -183,7 +187,7 @@ int main(int argc, char **argv) {
     volume->box(FL_FLAT_BOX);
     volume->color(FL_DARK2);
     volume->selection_color((Fl_Color)61);
-    volume->labelsize(12);
+    volume->labelsize(14);
     volume->labelcolor(FL_GRAY0);
     volume->maximum(100);
     volume->step(1);
@@ -195,7 +199,7 @@ int main(int argc, char **argv) {
     button_pause->box(FL_FLAT_BOX);
     button_pause->selection_color((Fl_Color)43);
     button_pause->labelfont(4);
-    button_pause->labelsize(12);
+    button_pause->labelsize(14);
     button_pause->labelcolor(FL_GRAY0);
     button_pause->callback((Fl_Callback*)clicked_pause);
     
@@ -203,7 +207,7 @@ int main(int argc, char **argv) {
     button_play->box(FL_FLAT_BOX);
     button_play->selection_color((Fl_Color)43);
     button_play->labelfont(4);
-    button_play->labelsize(12);
+    button_play->labelsize(14);
     button_play->labelcolor(FL_GRAY0);
     button_play->callback((Fl_Callback*)clicked_play);
     
@@ -211,7 +215,7 @@ int main(int argc, char **argv) {
     button_about->box(FL_FLAT_BOX);
     button_about->selection_color((Fl_Color)43);
     button_about->labelfont(4);
-    button_about->labelsize(12);
+    button_about->labelsize(14);
     button_about->labelcolor(FL_GRAY0);
     button_about->callback((Fl_Callback*)clicked_about);
       
@@ -222,7 +226,7 @@ int main(int argc, char **argv) {
     radsel->labelfont(4);
     radsel->labelcolor(FL_GRAY0);
     radsel->textfont(5);
-    radsel->textsize(12);
+    radsel->textsize(15);
     radsel->textcolor(FL_GRAY0);
     radsel->callback((Fl_Callback*)radsel_callback);
     radsel->align(Fl_Align(FL_ALIGN_TEXT_OVER_IMAGE));
@@ -232,7 +236,7 @@ int main(int argc, char **argv) {
     country->down_box(FL_BORDER_BOX);
     country->selection_color((Fl_Color)43);
     country->textfont(4);
-    country->textsize(12);
+    country->textsize(15);
     country->callback((Fl_Callback*)country_callback);
     country->add("All");country->add("Serbia");country->add("Bosnia");country->add("Croatia");country->add("Switzerland");country->add("Slovenia");country->add("Austria");
     country->value(0);
@@ -242,7 +246,7 @@ int main(int argc, char **argv) {
     radioinfo->color((Fl_Color)53);
     radioinfo->selection_color((Fl_Color)61);
     radioinfo->textfont(4);
-    radioinfo->textsize(12);
+    radioinfo->textsize(15);
     g1->end();
     
     radio = new Fl_Browser(5, 55, 820, 485);
@@ -259,7 +263,7 @@ int main(int argc, char **argv) {
     radio->column_widths(widths);
     radio->column_char('|');
     
-    main_window->size_range(500, 300);
+    main_window->size_range(900, 600);
     main_window->end();
     add_stations();
 

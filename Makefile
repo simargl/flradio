@@ -34,17 +34,17 @@ bundle:
 	rm -r /tmp/1
 
 install: all
-	install -Dm755 data/flradio $(DESTDIR)/usr/bin/flradio
+	install -Dm755 data/flradio $(DESTDIR)/usr/local/bin/flradio
 	install -Dm644 data/flradio.desktop $(DESTDIR)/usr/share/applications/flradio.desktop
-	install -Dm755 build/linux/flradio.bin $(DESTDIR)/usr/share/flradio/flradio.bin
-	install -Dm644 build/linux/flradio.png $(DESTDIR)/usr/share/flradio/flradio.png
-	install -Dm644 build/linux/libbass64.so $(DESTDIR)/usr/share/flradio/libbass64.so
+	install -Dm755 build/linux/flradio.bin $(DESTDIR)/usr/local/share/flradio/flradio.bin
+	install -Dm644 build/linux/flradio.png $(DESTDIR)/usr/local/share/flradio/flradio.png
+	install -Dm644 build/linux/libbass64.so $(DESTDIR)/usr/local/share/flradio/libbass64.so
 	install -d $(DESTDIR)/usr/share/icons/hicolor/64x64/apps
-	ln -sf ../../../../flradio/flradio.png $(DESTDIR)/usr/share/icons/hicolor/64x64/apps/flradio.png 
+	ln -sf ../../../../../local/share/flradio/flradio.png $(DESTDIR)/usr/share/icons/hicolor/64x64/apps/flradio.png 
 
 uninstall:
 	rm $(DESTDIR)/usr/bin/flradio
 	rm $(DESTDIR)/usr/share/applications/flradio.desktop
-	rm -r $(DESTDIR)/usr/share/flradio
+	rm -r $(DESTDIR)/usr/local/share/flradio
 	rm $(DESTDIR)/usr/share/icons/hicolor/64x64/apps/flradio.png 
 
