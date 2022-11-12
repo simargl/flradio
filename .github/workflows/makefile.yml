@@ -19,3 +19,9 @@ jobs:
 
     - name: Compile
       run: make
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: flradio
+        path: build/linux/*
