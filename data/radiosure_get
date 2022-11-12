@@ -8,8 +8,8 @@
 
 COUNTRIES="-e $1"
 
-[ ! -f stations2.zip ] && wget http://www.radiosure.com/rsdbms/stations2.zip
-bsdtar -xf stations2.zip
+[ ! -f latest.zip ] && wget http://rb2rs.freemyip.com/latest.zip
+bsdtar -xf latest.zip
 
 cat stations-*.rsd | tr -s "\t" '|' > tmp1
 awk -F'|' 'BEGIN{OFS="|";} {print $4,$3,$1,$6;}' tmp1 | sort | uniq > index_radio
