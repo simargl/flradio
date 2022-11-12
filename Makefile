@@ -36,7 +36,7 @@ bundle:
 zip: all
 	cp data/flradio build/linux/
 	chmod 755 build/linux/flradio
-	zip -r flradio.zip build/linux/
+	zip -r flradio.zip build/linux/ -j 2
 
 install: all
 	install -Dm755 data/flradio $(DESTDIR)/usr/local/bin/flradio
