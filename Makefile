@@ -9,8 +9,7 @@ all: flradio.bin
 
 flradio.bin: gui.o play.o stations.o
 	${CC} $(OBJS) -o $(PROG) ${CFLAGS} ${LDFLAGS}
-	cp lib/*.so data/*.png data/flradio build/linux/
-	chmod 755 build/linux/flradio
+	cp lib/*.so data/*.png build/linux/
 
 gui.o:
 	${CC} ${CFLAGS} -c src/gui.cxx -o build/linux/gui.o
@@ -33,6 +32,11 @@ bundle:
 	mksquashfs /tmp/1 flradio.sb -noappend
 	make clean
 	rm -r /tmp/1
+
+zip: all
+	cp data/flradio build/linux/
+	chmod 755 build/linux/flradio
+	zip -r flradio.zip build/linux/
 
 install: all
 	install -Dm755 data/flradio $(DESTDIR)/usr/local/bin/flradio
