@@ -18,7 +18,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev
 
     - name: Compile
-      run: make
+      run: make zip
 
     - name: Archive artifacts
       uses: actions/upload-artifact@v3
