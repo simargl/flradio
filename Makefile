@@ -9,7 +9,8 @@ all: flradio.bin
 
 flradio.bin: gui.o play.o stations.o
 	${CC} $(OBJS) -o $(PROG) ${CFLAGS} ${LDFLAGS}
-	cp lib/*.so data/*.png build/linux/
+	cp lib/*.so data/*.png data/flradio build/linux/
+	chmod 755 build/linux/flradio
 
 gui.o:
 	${CC} ${CFLAGS} -c src/gui.cxx -o build/linux/gui.o
