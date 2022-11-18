@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -g -I./include
-LDFLAGS = `fltk-config --ldflags --use-images` `fltk-config --cxxflags --use-images` -lbass64 -L./lib
+LDFLAGS = `fltk-config --ldstaticflags --use-images` `fltk-config --cxxflags --use-images` -lbass64 -L./lib
 PROG = build/linux/flradio.bin
 OBJS = build/linux/play.o build/linux/stations.o build/linux/gui.o
 WINFLAGS = -I./include -DWIN32 -DUSE_OPENGL32 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -L./lib -mwindows -lfltk_images -lpng -lz -ljpeg -lfltk -lole32 -luuid -lcomctl32 -lbass
@@ -9,7 +9,9 @@ all: flradio.bin
 
 flradio.bin: gui.o play.o stations.o
 	${CC} $(OBJS) -o $(PROG) ${CFLAGS} ${LDFLAGS}
-	cp lib/*.so data/*.png build/linux/
+	cp lib/libbass64.so data/flradio.png data/flradio build/linux/
+	rm build/linux/*.o
+	chmod 755 build/linux/flradio
 
 gui.o:
 	${CC} ${CFLAGS} -c src/gui.cxx -o build/linux/gui.o
@@ -34,8 +36,6 @@ bundle:
 	rm -r /tmp/1
 
 zip: all
-	cp data/flradio build/linux/
-	chmod 755 build/linux/flradio
 	zip -r flradio.zip build/linux/ -j 2
 
 install: all
