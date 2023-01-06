@@ -18,10 +18,10 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev
 
     - name: Compile
-      run: make zip
+      run: make appimage
 
     - name: Archive artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: flradio-artifact
-        path: flradio.zip
+        name: flradio-appimage
+        path: FLRadio-x86_64.AppImage
