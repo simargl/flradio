@@ -42,7 +42,6 @@ appimage: all
 	mv build/linux/flradio.png build/linux/flradio-appimage/share/flradio
 	mv build/linux/libbass64.so build/linux/flradio-appimage/share/flradio
 	mv build/linux/flradio build/linux/flradio-appimage/AppRun
-	cd build/linux/flradio-appimage
 	ln -sf ./share/flradio/flradio.png build/linux/flradio-appimage/flradio.png
 	ln -sf ./share/flradio/flradio.desktop build/linux/flradio-appimage/flradio.desktop
 	wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O build/linux/appimagetool
