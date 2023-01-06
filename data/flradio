@@ -2,7 +2,11 @@
 
 if [ ! -f ./flradio.bin ]; then
     SCRIPT_DIR=$(readlink -f ${0%/*})
-    cd $SCRIPT_DIR/../share/flradio
+    if [ -d $SCRIPT_DIR/../share/flradio ]; then
+        cd $SCRIPT_DIR/../share/flradio
+    else
+        cd $SCRIPT_DIR/share/flradio
+    fi
 fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PWD"
 ./flradio.bin
