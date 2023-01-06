@@ -9,7 +9,7 @@ all: flradio.bin
 
 flradio.bin: gui.o play.o stations.o
 	${CC} $(OBJS) -o $(PROG) ${CFLAGS} ${LDFLAGS}
-	cp lib/libbass64.so data/flradio.png data/flradio build/linux/
+	cp lib/libbass64.so data/flradio.png data/flradio.desktop data/flradio build/linux/
 	rm build/linux/*.o
 	chmod 755 build/linux/flradio
 
@@ -23,7 +23,7 @@ stations.o:
 	${CC} ${CFLAGS} -c src/stations.cxx -o build/linux/stations.o
 
 clean: 
-	rm -f build/linux/*
+	rm -rf build/linux/*
 
 win: 
 	${CC} -o 'build/windows/flradio.exe' 'src/gui.cxx' 'src/play.cxx' 'src/stations.cxx' ${WINFLAGS} 
@@ -35,8 +35,19 @@ bundle:
 	make clean
 	rm -r /tmp/1
 
-zip: all
-	zip -r flradio.zip build/linux/ -j 2
+appimage: all
+	mkdir -p build/linux/flradio-appimage/share/flradio
+	mv build/linux/flradio.bin build/linux/flradio-appimage/share/flradio
+	mv build/linux/flradio.desktop build/linux/flradio-appimage/share/flradio
+	mv build/linux/flradio.png build/linux/flradio-appimage/share/flradio
+	mv build/linux/libbass64.so build/linux/flradio-appimage/share/flradio
+	mv build/linux/flradio build/linux/flradio-appimage/AppRun
+	cd build/linux/flradio-appimage
+	ln -sf ./share/flradio/flradio.png build/linux/flradio-appimage/flradio.png
+	ln -sf ./share/flradio/flradio.desktop build/linux/flradio-appimage/flradio.desktop
+	wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O build/linux/appimagetool
+	chmod 755 build/linux/appimagetool
+	build/linux/appimagetool build/linux/flradio-appimage
 
 install: all
 	install -Dm755 data/flradio $(DESTDIR)/usr/local/bin/flradio
