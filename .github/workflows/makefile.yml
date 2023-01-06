@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev libxft-dev
+      run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev libxft-dev libfuse-dev
 
     - name: Compile
       run: make appimage
