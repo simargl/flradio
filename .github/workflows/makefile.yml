@@ -13,15 +13,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev libxft-dev libfuse-dev
-
     - name: Compile
       run: make appimage
-
     - name: Archive artifacts
       uses: actions/upload-artifact@v3
       with:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
+    - uses: Shopify/upload-to-release@v1
+      with:
+        name: flradio-appimage
+        path: FLRadio-x86_64.AppImage
+        tag: ${{ github.ref }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+          content-type: text/plain # Optional
