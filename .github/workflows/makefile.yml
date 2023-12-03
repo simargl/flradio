@@ -22,10 +22,9 @@ jobs:
       with:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
-
-    - uses: Shopify/upload-to-release@v2
-      with:
-        name: flradio-appimage
-        path: FLRadio-x86_64.AppImage
-        tag: ${{ github.ref }}
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: flradio-appimage
+          tag_name: ${{ github.ref }}
+          files: FLRadio-x86_64.AppImage
