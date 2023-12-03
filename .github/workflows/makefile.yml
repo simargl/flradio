@@ -22,8 +22,8 @@ jobs:
       with:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
-    steps:
-    - uses: Shopify/upload-to-release@v1
+
+    - uses: Shopify/upload-to-release@v2
       with:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
