@@ -28,4 +28,3 @@ jobs:
         path: FLRadio-x86_64.AppImage
         tag: ${{ github.ref }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-          content-type: text/plain # Optional
