@@ -22,9 +22,11 @@ jobs:
       with:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
-    - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          name: flradio-appimage
-          tag_name: ${{ github.ref }}
-          files: FLRadio-x86_64.AppImage
+    - name: upload linux artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        asset_path: ./FLRadio-x86_64.AppImage
+        asset_name: FLRadio-x86_64.AppImage
+        asset_content_type: application/x-iso9660-appimage
