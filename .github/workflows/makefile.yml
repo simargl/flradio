@@ -22,7 +22,7 @@ jobs:
       with:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
-    - name: Upload binaries to release
+    - name: Release
       uses: softprops/action-gh-release@v1
-      with:
-          files: FLRadio-x86_64.AppImage
+      if: startsWith(github.ref, '2023')
+        files: FLRadio-x86_64.AppImage
