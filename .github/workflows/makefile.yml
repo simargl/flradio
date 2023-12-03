@@ -25,4 +25,5 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, '2023')
+      with:
         files: FLRadio-x86_64.AppImage
