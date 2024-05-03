@@ -17,12 +17,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev libxft-dev libfuse-dev
     - name: Compile
       run: make appimage
-    - name: Archive artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: flradio-appimage
-        path: FLRadio-x86_64.AppImage
-    - name: release
+    - name: Create release
       uses: actions/create-release@v1
       id: create_release
       with:
@@ -42,6 +37,3 @@ jobs:
         asset_path: ./FLRadio-x86_64.AppImage
         asset_name: FLRadio-x86_64.AppImage
         asset_content_type: application/x-iso9660-appimage
-
-
-        
