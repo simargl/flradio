@@ -13,10 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev libxft-dev libfuse-dev
+
     - name: Compile
       run: make appimage
+
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
