@@ -1,3 +1,5 @@
+name: Makefile CI
+
 on:
   push:
     branches: [ "master" ]
@@ -6,45 +8,32 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev libxft-dev libfuse-dev
-
     - name: Compile
       run: make appimage
-
     - name: Create release
-      id: create_release
       uses: actions/create-release@v1
+      id: create_release
       with:
         draft: false
         prerelease: false
         tag_name: "flradio-${{ github.run_number }}"
         release_name: "flradio-${{ github.run_number }}"
-
-    - name: Export upload URL
-      run: echo "UPLOAD_URL=${{ steps.create_release.outputs.upload_url }}" >> $GITHUB_ENV
-
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
     - name: Upload Release Asset
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ env.UPLOAD_URL }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ./FLRadio-x86_64.AppImage
         asset_name: FLRadio-x86_64.AppImage
         asset_content_type: application/x-iso9660-appimage
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
