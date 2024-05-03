@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev libxcursor-dev libxinerama-dev libxft-dev libfuse-dev
     - name: Compile
       run: make appimage
     - name: Archive artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
@@ -28,8 +28,7 @@ jobs:
       with:
         draft: false
         prerelease: false
-        release_name: ${{ steps.version.outputs.version }}
-        tag_name: ${{ github.ref }}
-        body_path: FLRadio-x86_64.AppImage
+        tag_name: "${{ env.ver }}"
+        release_name: "${{ env.ver }}"
       env:
         GITHUB_TOKEN: ${{ github.token }}
