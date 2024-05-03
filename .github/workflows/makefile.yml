@@ -23,12 +23,12 @@ jobs:
         name: flradio-appimage
         path: FLRadio-x86_64.AppImage
     - name: release
-      uses: actions/create-release@v1
+      uses: actions/create-release@v2
       id: create_release
       with:
         draft: false
         prerelease: false
-        tag_name: "${{ env.ver }}"
-        release_name: "${{ env.ver }}"
+        tag_name: "flradio-${{ github.run_number }}"
+        release_name: "flradio-${{ github.run_number }}"
       env:
         GITHUB_TOKEN: ${{ github.token }}
